@@ -11,7 +11,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hostname
-  name: '${ parameters.namespace ?: staging }'
+  namespace: '${ parameters.namespace ?: staging }'
 spec:
   replicas: '${ #toInt( parameters.replicas ?: 3) }'
   selector:
