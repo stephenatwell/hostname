@@ -2,8 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: hostname
-  namespace: '${ parameters.namespace ?: staging }'
+  name: '${ parameters.namespace ?: staging }'
 spec:
   finalizers:
   - kubernetes
