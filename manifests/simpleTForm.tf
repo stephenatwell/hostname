@@ -1,16 +1,25 @@
 
+variable "namespace" {
+  type = string
+}
+variable "deployName" {
+  type = string
+}
+variable "replicas" {
+  type = number
+}
 resource "kubernetes_namespace" "test" {
   metadata {
-    name = "terraformer-nginx"
+    name = var.namespace
   }
 }
 resource "kubernetes_deployment" "test" {
   metadata {
-    name      = "nginx"
+    name      = var.deployName
     namespace = kubernetes_namespace.test.metadata.0.name
   }
   spec {
-    replicas = 2
+    replicas = var.replicas
     selector {
       match_labels = {
         app = "MyTestApp"
