@@ -32,7 +32,7 @@ spec:
   selector:
     app: hostname
   sessionAffinity: None
-  type: ClusterIP
+  type: LoadBalancer
  
      
    
