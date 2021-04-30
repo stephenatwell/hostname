@@ -34,6 +34,40 @@ spec:
         imagePullPolicy: Always
         name: hostname
         resources: {}
+        volumeMounts: 
+        - mountPath: /etc/nginx/conf.d/nginx-status.conf
+          name: nginx-status-conf
+          readOnly: true
+          subPath: nginx.status.conf
+      - name: nginx-exporter
+        image: 'nginx/nginx-prometheus-exporter:0.3.0'
+        args:
+          - '-nginx.scrape-uri=http://localhost:8090/nginx_status'
+        ports:
+          - name: nginx-ex-port
+            containerPort: 9113
+            protocol: TCP
+        imagePullPolicy: Always
       restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: nginx-status-conf
+        name: nginx-status-conf
  
   
+---
+apiVersion: v1
+data:
+  nginx.status.conf: |
+    server {
+        listen       8090 default_server;
+        location /nginx_status {
+            stub_status;
+            access_log off;
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-status-conf
+  namespace: '${ parameters.namespace ?: staging }'
