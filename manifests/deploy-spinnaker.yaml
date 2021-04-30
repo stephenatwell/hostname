@@ -25,6 +25,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9113'
       labels:
         app: hostname
         version: v1
