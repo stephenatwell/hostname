@@ -15,6 +15,24 @@ spec:
     app: hostname
   sessionAffinity: None
   type: LoadBalancer
+ ---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hostname
+  name: hostname-metrics
+  namespace: '${ parameters.namespace ?: staging }'
+spec:
+  ports:
+  - port: 9113
+    protocol: TCP
+    targetPort: 9113
+    name: metrics
+  selector:
+    app: hostname
+  sessionAffinity: None
+  type: ClusterIP
  
      
    
