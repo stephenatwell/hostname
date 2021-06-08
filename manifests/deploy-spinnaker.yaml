@@ -3,6 +3,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: '${ parameters.namespace ?: staging }'
+  annotations:
+    app: hostname
+    owner: stephen
+    otherAnnotation: testValue
 spec:
   finalizers:
   - kubernetes
@@ -12,6 +16,10 @@ kind: Deployment
 metadata:
   name: hostname
   namespace: '${ parameters.namespace ?: staging }'
+  annotations:
+    app: hostname
+    owner: stephen
+    otherAnnotation: testValue
 spec:
   replicas: '${ #toInt( parameters.replicas ?: 3) }'
   selector:
@@ -28,6 +36,9 @@ spec:
       annotations:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '9113'
+        app: hostname
+        owner: stephen
+        otherAnnotation: testValue
       labels:
         app: hostname
         version: v1
@@ -74,3 +85,7 @@ kind: ConfigMap
 metadata:
   name: nginx-status-conf
   namespace: '${ parameters.namespace ?: staging }'
+  annotations:
+    app: hostname
+    owner: stephen
+    otherAnnotation: testValue
