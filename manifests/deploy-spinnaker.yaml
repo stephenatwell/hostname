@@ -18,7 +18,7 @@ metadata:
   namespace: '${ parameters.namespace ?: staging }'
   annotations:
     app: hostname
-    #owner: stephen
+    owner: stephen
     otherAnnotation: testValue
 spec:
   replicas: '${ #toInt( parameters.replicas ?: 3) }'
