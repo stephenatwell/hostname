@@ -37,7 +37,7 @@ spec:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '9113'
         app: hostname
-        #owner: stephen
+        owner: stephen
         otherAnnotation: testValue
       labels:
         app: hostname
