@@ -6,6 +6,10 @@ metadata:
     app: hostname
   name: hostname
   namespace: '${ parameters.namespace ?: staging }'
+  annotations:
+    app: hostname
+    owner: stephen
+    otherAnnotation: testValue
 spec:
   ports:
   - port: 80
@@ -24,6 +28,10 @@ metadata:
     app: hostname
   name: hostname-metrics
   namespace: '${ parameters.namespace ?: staging }'
+  annotations:
+    app: hostname
+    owner: stephen
+    otherAnnotation: testValue
 spec:
   ports:
   - port: 9113
