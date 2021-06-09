@@ -5,7 +5,7 @@ metadata:
   name: '${ parameters.namespace ?: staging }'
   annotations:
     app: hostname
-    owner: stephen
+    #owner: stephen
     otherAnnotation: testValue
 spec:
   finalizers:
